@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<!-- precipitation_map.html -->
+
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center">Global Precipitation Heat Map</h2>
+
+    <!-- عرض الخريطة -->
+    <div id="chart" style="height: 600px;"></div>
+
+    <!-- تضمين مكتبة Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- تمثيل الرسم البياني من خلال JSON -->
+    <script>
+        var graphData = {{ graph_json|safe }};
+        Plotly.newPlot('chart', graphData.data, graphData.layout);
+    </script>
+</div>
+{% endblock %}
